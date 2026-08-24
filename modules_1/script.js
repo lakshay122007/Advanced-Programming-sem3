@@ -1,7 +1,21 @@
-// es5/common js
-//es6 module
+// // es5/common js
+// //es6 module
+// //inbuilt module
 
-//eg - 
+// //eg - 
 
-const time = "9 am";
-module.exports = time;
+// const time = "9 am";
+
+// console.log(time);
+// console.log(time);
+
+// module.exports = time;
+
+//Event Emitters
+
+const EventEmitter = require('events')
+// console.log(EventEmitter)
+
+const celebrity = new EventEmitter()
+
+celebrity.emit("New video")
