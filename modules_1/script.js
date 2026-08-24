@@ -17,5 +17,8 @@ const EventEmitter = require('events')
 // console.log(EventEmitter)
 
 const celebrity = new EventEmitter()
+celebrity.on("New video",() => { //on is a listener
+    console.log("Heyy good good")
+})
 
-celebrity.emit("New video")
+celebrity.emit("New video") //fire an event
