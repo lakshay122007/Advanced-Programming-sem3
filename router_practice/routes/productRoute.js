@@ -4,11 +4,11 @@ const route = express.Router();
 
 
 
-app.get("/products", (req, res) => {
+route.get("/products", (req, res) => {
   res.json(products);
 });
 
-app.get("/products/:id", (req, res) => {
+route.get("/products/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const product = products.find((product) => {
@@ -24,7 +24,7 @@ app.get("/products/:id", (req, res) => {
   res.json(product);
 });
 
-app.post("/products", (req, res) => {
+route.post("/products", (req, res) => {
   const { name, price } = req.body;
 
   if (!name || !price) {
@@ -44,7 +44,7 @@ app.post("/products", (req, res) => {
   res.status(201).json(product);
 });
 
-app.put("/products/:id", (req, res) => {
+route.put("/products/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const product = products.find((product) => {
@@ -63,7 +63,7 @@ app.put("/products/:id", (req, res) => {
   res.json(product);
 });
 
-app.delete("/products/:id", (req, res) => {
+route.delete("/products/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const index = products.findIndex((product) => {
