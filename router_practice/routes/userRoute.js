@@ -1,11 +1,11 @@
 const express = require('express');
-const route = express.router()
+const route = express.Router()
 
-route.get("/users", (req, res) => {
+route.get("/", (req, res) => {
   res.json(users);
 });
 
-route.get("/users/:id", (req, res) => {
+route.get("/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const user = users.find((user) => {
@@ -21,7 +21,7 @@ route.get("/users/:id", (req, res) => {
   res.json(user);
 });
 
-route.post("/users", (req, res) => {
+route.post("/", (req, res) => {
   const { name, email } = req.body;
 
   if (!name || !email) {
@@ -41,7 +41,7 @@ route.post("/users", (req, res) => {
   res.status(201).json(newUser);
 });
 
-route.put("/users/:id", (req, res) => {
+route.put("/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const user = users.find((user) => {
@@ -60,7 +60,7 @@ route.put("/users/:id", (req, res) => {
   res.json(user);
 });
 
-route.delete("/users/:id", (req, res) => {
+route.delete("/:id", (req, res) => {
   const id = Number(req.params.id);
 
   const index = users.findIndex((user) => {

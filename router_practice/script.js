@@ -1,8 +1,10 @@
 const express = require("express");
 const userRoute = require("./routes/userRoute");
+const productRoute = require("./routes/productRoute");
 const app = express();
 
 app.use("/users", userRoute);
+app.use("/products", productRoute);
 
 app.use(express.json());
 
@@ -23,163 +25,6 @@ let orders = [
   { id: 2, userId: 2, productId: 1, quantity: 1 },
 ];
 
-app.get("/users", (req, res) => {
-  res.json(users);
-});
-
-app.get("/users/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const user = users.find((user) => {
-    return user.id === id;
-  });
-
-  if (!user) {
-    return res.status(404).json({
-      message: "User not found",
-    });
-  }
-
-  res.json(user);
-});
-
-app.post("/users", (req, res) => {
-  const { name, email } = req.body;
-
-  if (!name || !email) {
-    return res.status(400).json({
-      message: "Name and email are required",
-    });
-  }
-
-  const newUser = {
-    id: users.length + 1,
-    name: name,
-    email: email,
-  };
-
-  users.push(newUser);
-
-  res.status(201).json(newUser);
-});
-
-app.put("/users/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const user = users.find((user) => {
-    return user.id === id;
-  });
-
-  if (!user) {
-    return res.status(404).json({
-      message: "User not found",
-    });
-  }
-
-  user.name = req.body.name || user.name;
-  user.email = req.body.email || user.email;
-
-  res.json(user);
-});
-
-app.delete("/users/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const index = users.findIndex((user) => {
-    return user.id === id;
-  });
-
-  if (index === -1) {
-    return res.status(404).json({
-      message: "User not found",
-    });
-  }
-
-  users.splice(index, 1);
-
-  res.json({
-    message: "User deleted",
-  });
-});
-
-app.get("/products", (req, res) => {
-  res.json(products);
-});
-
-app.get("/products/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const product = products.find((product) => {
-    return product.id === id;
-  });
-
-  if (!product) {
-    return res.status(404).json({
-      message: "Product not found",
-    });
-  }
-
-  res.json(product);
-});
-
-app.post("/products", (req, res) => {
-  const { name, price } = req.body;
-
-  if (!name || !price) {
-    return res.status(400).json({
-      message: "Name and price required",
-    });
-  }
-
-  const product = {
-    id: products.length + 1,
-    name: name,
-    price: price,
-  };
-
-  products.push(product);
-
-  res.status(201).json(product);
-});
-
-app.put("/products/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const product = products.find((product) => {
-    return product.id === id;
-  });
-
-  if (!product) {
-    return res.status(404).json({
-      message: "Product not found",
-    });
-  }
-
-  product.name = req.body.name || product.name;
-  product.price = req.body.price || product.price;
-
-  res.json(product);
-});
-
-app.delete("/products/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const index = products.findIndex((product) => {
-    return product.id === id;
-  });
-
-  if (index === -1) {
-    return res.status(404).json({
-      message: "Product not found",
-    });
-  }
-
-  products.splice(index, 1);
-
-  res.json({
-    message: "Product deleted",
-  });
-});
 
 app.get("/orders", (req, res) => {
   res.json(orders);
