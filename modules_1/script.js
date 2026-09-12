@@ -27,9 +27,18 @@
 
 const fs = require("fs")
 
-fs.writeFileSync("big_data.csv", "id,userName,orderValue\n");
+// fs.writeFileSync("big_data.csv", "id,userName,orderValue\n");
 
-for (let i = 1; i<=3000; i++){
-    fs.appendFileSync("big_data.csv", `${i}, username${i}, ${Math.random()*100}`)
-}
+// for (let i = 1; i<=3000; i++){
+//     fs.appendFileSync("big_data.csv", `${i}, username${i}, ${Math.random()*100}`)
+// }
+
+fs.writeFile("welcome.txt", "Hello broo", (err) => {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("File created successfully")
+    }
+})
 
