@@ -1,9 +1,6 @@
 const express = require("express");
 const route = express.Router(); 
 
-
-
-
 route.get("/products", (req, res) => {
   res.json(products);
 });
