@@ -13,6 +13,7 @@ app.use((req,res,next) =>{
     console.log(`${req.method} -  ${req.url}`)
     next() //transfer control to the next middleware function
 })
+
 //route level middleware 
 const country = (req,res, next) => {
     if(req.headers['country']){
